@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Patient Details</h2>
+
+<div class="card p-3">
+
+    <p><strong>Name:</strong> {{ patient.name }}</p>
+    <p><strong>Age:</strong> {{ patient.age }}</p>
+    <p><strong>Gender:</strong> {{ patient.gender }}</p>
+    <p><strong>Hypertension:</strong> {{ "Yes" if patient.hypertension else "No" }}</p>
+    <p><strong>Heart Disease:</strong> {{ "Yes" if patient.heart_disease else "No" }}</p>
+    <p><strong>Ever Married:</strong> {{ patient.ever_married }}</p>
+    <p><strong>Work Type:</strong> {{ patient.work_type }}</p>
+    <p><strong>Residence Type:</strong> {{ patient.residence_type }}</p>
+    <p><strong>Average Glucose Level:</strong> {{ patient.avg_glucose_level }}</p>
+    <p><strong>BMI:</strong> {{ patient.bmi }}</p>
+    <p><strong>Smoking Status:</strong> {{ patient.smoking_status }}</p>
+
+</div>
+
+<a class="btn btn-secondary mt-3" href="{{ url_for('patients') }}">Back</a>
+
+{% endblock %}

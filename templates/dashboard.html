@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Dashboard</h2>
+
+<p>Welcome, {{ session.email }}!</p>
+
+<div class="card p-3">
+    <h4>Total Patients: {{ total }}</h4>
+</div>
+
+<a href="/patients" class="btn btn-primary mt-3">Manage Patients</a>
+{% endblock %}

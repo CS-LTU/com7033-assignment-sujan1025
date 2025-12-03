@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Patients List</h2>
+
+<a href="{{ url_for('create_patient') }}" class="btn btn-success mb-3">+ Add New Patient</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Hypertension</th>
+            <th>Heart Disease</th>
+            <th>Ever Married</th>
+            <th>Work Type</th>
+            <th>Residence Type</th>
+            <th>Avg Glucose</th>
+            <th>BMI</th>
+            <th>Smoking Status</th>
+            <th>Stroke</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for p in patients %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.age }}</td>
+            <td>{{ p.gender }}</td>
+            <td>{{ "Yes" if p.hypertension else "No" }}</td>
+            <td>{{ "Yes" if p.heart_disease else "No" }}</td>
+            <td>{{ p.ever_married }}</td>
+            <td>{{ p.work_type }}</td>
+            <td>{{ p.residence_type }}</td>
+            <td>{{ p.avg_glucose_level }}</td>
+            <td>{{ p.bmi }}</td>
+            <td>{{ p.smoking_status }}</td>
+
+            <td>{{ "Yes" if p.stroke == 1 else "No" }}</td>
+
+            <td>
+                <a href="/patients/edit/{{ p._id }}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="/patients/delete/{{ p._id }}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
