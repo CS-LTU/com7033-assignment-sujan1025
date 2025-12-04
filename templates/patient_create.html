@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add New Patient</h2>
+
+<form method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <input class="form-control mb-2" type="number" name="id" placeholder="Patient ID" required>
+    <input class="form-control mb-2" name="age" type="number" placeholder="Age" required>
+
+    <select class="form-control mb-2" name="gender" required>
+        <option value="">Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+    </select>
+
+    <select class="form-control mb-2" name="ever_married" required>
+        <option value="">Married?</option>
+        <option>No</option>
+        <option>Yes</option>
+    </select>
+
+    <select class="form-control mb-2" name="work_type" required>
+        <option value="">Work Type</option>
+        <option>Children</option>
+        <option>Govt_job</option>
+        <option>Never_worked</option>
+        <option>Private</option>
+        <option>Self-employed</option>
+    </select>
+
+    <select class="form-control mb-2" name="residence_type" required>
+        <option value="">Residence Type</option>
+        <option>Rural</option>
+        <option>Urban</option>
+    </select>
+
+    <input class="form-control mb-2" name="avg_glucose_level" type="number" step="0.01"
+           placeholder="Average Glucose Level" required>
+
+    <input class="form-control mb-2" name="bmi" type="number" step="0.1"
+           placeholder="BMI" required>
+
+    <select class="form-control mb-2" name="smoking_status" required>
+        <option value="">Smoking Status</option>
+        <option>formerly smoked</option>
+        <option>never smoked</option>
+        <option>smokes</option>
+        <option>Unknown</option>
+    </select>
+
+    <label class="mt-2">Heart Disease:</label>
+    <select class="form-control mb-2" name="heart_disease">
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+    </select>
+
+    <label>Hypertension:</label>
+    <select class="form-control mb-4" name="hypertension">
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+    </select>
+
+    <button class="btn btn-success">Save</button>
+</form>
+
+{% endblock %}

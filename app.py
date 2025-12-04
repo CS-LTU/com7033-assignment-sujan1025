@@ -126,7 +126,32 @@ def dashboard():
     total_patients = patient_collection.count_documents({})
     return render_template("dashboard.html", total=total_patients)
 
+# CREATE PATIENT
+@app.route("/patients/create", methods=["GET", "POST"])
+@login_required
+def create_patient():
 
+    if request.method == "POST":
+        patient = {
+            "id": int(request.form["id"]),
+            "age": int(request.form["age"]),
+            "gender": request.form["gender"],
+            "hypertension": request.form.get("hypertension") == "1",
+            "heart_disease": request.form.get("heart_disease") == "1",
+            "ever_married": request.form["ever_married"],
+            "work_type": request.form["work_type"],
+            "residence_type": request.form["residence_type"],
+            "avg_glucose_level": float(request.form["avg_glucose_level"]),
+            "bmi": float(request.form["bmi"]),
+            "smoking_status": request.form["smoking_status"],
+            "stroke": int(request.form["stroke"])
+        }
+
+        patient_collection.insert_one(patient)
+        flash("Patient added successfully!", "success")
+        return redirect("/patients")
+
+    return render_template("patient_create.html")
 
 # PATIENTS LIST (READ)
 @app.route("/patients")
