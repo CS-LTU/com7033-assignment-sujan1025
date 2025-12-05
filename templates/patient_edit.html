@@ -5,22 +5,32 @@
 <form method="POST">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
-    <input class="form-control mb-2" name="name" value="{{ patient.name }}" required>
+    <!-- Patient ID -->
+    <label class="form-label">Patient ID</label>
+    <input class="form-control mb-3" value="{{ patient.id }}" readonly>
 
-    <input class="form-control mb-2" name="age" type="number" value="{{ patient.age }}" required>
+    <!-- Age -->
+    <label class="form-label">Age</label>
+    <input class="form-control mb-3" name="age" type="number" value="{{ patient.age }}" required>
 
-    <select class="form-control mb-2" name="gender" required>
+    <!-- Gender -->
+    <label class="form-label">Gender</label>
+    <select class="form-control mb-3" name="gender" required>
         <option {% if patient.gender=='Male' %}selected{% endif %}>Male</option>
         <option {% if patient.gender=='Female' %}selected{% endif %}>Female</option>
         <option {% if patient.gender=='Other' %}selected{% endif %}>Other</option>
     </select>
 
-    <select class="form-control mb-2" name="ever_married" required>
+    <!-- Ever Married -->
+    <label class="form-label">Married</label>
+    <select class="form-control mb-3" name="ever_married" required>
         <option {% if patient.ever_married=='No' %}selected{% endif %}>No</option>
         <option {% if patient.ever_married=='Yes' %}selected{% endif %}>Yes</option>
     </select>
 
-    <select class="form-control mb-2" name="work_type" required>
+    <!-- Work Type -->
+    <label class="form-label">Work Type</label>
+    <select class="form-control mb-3" name="work_type" required>
         <option {% if patient.work_type=='Children' %}selected{% endif %}>Children</option>
         <option {% if patient.work_type=='Govt_job' %}selected{% endif %}>Govt_job</option>
         <option {% if patient.work_type=='Never_worked' %}selected{% endif %}>Never_worked</option>
@@ -28,40 +38,54 @@
         <option {% if patient.work_type=='Self-employed' %}selected{% endif %}>Self-employed</option>
     </select>
 
-    <select class="form-control mb-2" name="residence_type" required>
+    <!-- Residence Type -->
+    <label class="form-label">Residence Type</label>
+    <select class="form-control mb-3" name="residence_type" required>
         <option {% if patient.residence_type=='Rural' %}selected{% endif %}>Rural</option>
         <option {% if patient.residence_type=='Urban' %}selected{% endif %}>Urban</option>
     </select>
 
-    <input class="form-control mb-2" name="avg_glucose_level" type="number" step="0.01"
+    <!-- Glucose -->
+    <label class="form-label">Average Glucose Level</label>
+    <input class="form-control mb-3" name="avg_glucose_level" type="number" step="0.01"
            value="{{ patient.avg_glucose_level }}" required>
 
-    <input class="form-control mb-2" name="bmi" type="number" step="0.1"
+    <!-- BMI -->
+    <label class="form-label">BMI</label>
+    <input class="form-control mb-3" name="bmi" type="number" step="0.1"
            value="{{ patient.bmi }}" required>
 
-    <select class="form-control mb-2" name="smoking_status" required>
+    <!-- Smoking Status -->
+    <label class="form-label">Smoking Status</label>
+    <select class="form-control mb-3" name="smoking_status" required>
         <option {% if patient.smoking_status=='formerly smoked' %}selected{% endif %}>formerly smoked</option>
         <option {% if patient.smoking_status=='never smoked' %}selected{% endif %}>never smoked</option>
         <option {% if patient.smoking_status=='smokes' %}selected{% endif %}>smokes</option>
         <option {% if patient.smoking_status=='Unknown' %}selected{% endif %}>Unknown</option>
     </select>
 
-    <select class="form-control mb-2" name="heart_disease">
+    <!-- Heart Disease -->
+    <label class="form-label">Heart Disease</label>
+    <select class="form-control mb-3" name="heart_disease">
         <option value="0" {% if not patient.heart_disease %}selected{% endif %}>No</option>
         <option value="1" {% if patient.heart_disease %}selected{% endif %}>Yes</option>
     </select>
 
-    <select class="form-control mb-2" name="hypertension">
+    <!-- Hypertension -->
+    <label class="form-label">Hypertension</label>
+    <select class="form-control mb-3" name="hypertension">
         <option value="0" {% if not patient.hypertension %}selected{% endif %}>No</option>
         <option value="1" {% if patient.hypertension %}selected{% endif %}>Yes</option>
     </select>
 
+    <!-- Stroke -->
+    <label class="form-label">Stroke</label>
     <select class="form-control mb-4" name="stroke">
         <option value="0" {% if patient.stroke == 0 %}selected{% endif %}>No</option>
         <option value="1" {% if patient.stroke == 1 %}selected{% endif %}>Yes</option>
     </select>
 
-    <button class="btn btn-primary">Update Patient</button>
+    <button class="btn btn-primary w-100">Update Patient</button>
 </form>
 
 {% endblock %}

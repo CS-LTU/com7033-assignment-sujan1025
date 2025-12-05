@@ -169,6 +169,35 @@ def view_patient(id):
     return render_template("patient_view.html", patient=patient)
 
 
+# EDIT PATIENT
+@app.route("/patients/edit/<string:id>", methods=["GET", "POST"])
+@login_required
+def edit_patient(id):
+    patient = patient_collection.find_one({"_id": ObjectId(id)})
+
+    if request.method == "POST":
+        update = {
+            "name": request.form["name"],
+            "age": int(request.form["age"]),
+            "gender": request.form["gender"],
+            "hypertension": request.form.get("hypertension") == "1",
+            "heart_disease": request.form.get("heart_disease") == "1",
+            "ever_married": request.form["ever_married"],
+            "work_type": request.form["work_type"],
+            "residence_type": request.form["residence_type"],
+            "avg_glucose_level": float(request.form["avg_glucose_level"]),
+            "bmi": float(request.form["bmi"]),
+            "smoking_status": request.form["smoking_status"],
+            "stroke": int(request.form["stroke"])
+        }
+
+        patient_collection.update_one({"_id": ObjectId(id)}, {"$set": update})
+        flash("Patient updated successfully!", "success")
+        return redirect("/patients")
+
+    return render_template("patient_edit.html", patient=patient)
+
+
 # RUN APP
 if __name__ == "__main__":
     app.run(debug=True)
