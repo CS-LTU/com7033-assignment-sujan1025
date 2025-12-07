@@ -197,6 +197,14 @@ def edit_patient(id):
 
     return render_template("patient_edit.html", patient=patient)
 
+# DELETE PATIENT
+@app.route("/patients/delete/<string:id>")
+@login_required
+def delete_patient(id):
+    patient_collection.delete_one({"_id": ObjectId(id)})
+    flash("Patient deleted!", "danger")
+    return redirect("/patients")
+
 
 # RUN APP
 if __name__ == "__main__":
