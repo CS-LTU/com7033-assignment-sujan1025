@@ -177,7 +177,7 @@ def edit_patient(id):
 
     if request.method == "POST":
         update = {
-            "name": request.form["name"],
+            #"id": int(request.form["id"]),
             "age": int(request.form["age"]),
             "gender": request.form["gender"],
             "hypertension": request.form.get("hypertension") == "1",
