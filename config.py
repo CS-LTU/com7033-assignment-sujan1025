@@ -6,5 +6,5 @@ class Config:
 
     # Security for cookies
     SESSION_COOKIE_HTTPONLY = True
-    SESSION_COOKIE_SECURE = False  # Change to True when deploying on HTTPS
+    SESSION_COOKIE_SECURE = False 
     SESSION_COOKIE_SAMESITE = "Lax"
